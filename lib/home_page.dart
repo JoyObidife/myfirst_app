@@ -9,14 +9,37 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text("MediCall"),
         centerTitle: true,
-        leading: Icon(Icons.menu_book_outlined),
-        actions: [
+      
+          actions: [
           Padding(
             padding: const EdgeInsets.only(right: 16),
             child: Icon(Icons.search),
           ),
         ],
+        leading: Icon(Icons.menu_book_outlined),
       ),
+        body: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: TextField(
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.search),
+                  hintText: "Search hospital or address",
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey.shade300),
+                    borderRadius: BorderRadius.circular(8)
+                  
+                  )
+                ),
+              ),
+            )
+
+          ],
+
+        )
+      
       );
+      
   }
 }
