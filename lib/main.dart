@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myfirst_app/bottom_navigation.dart';
 import 'package:myfirst_app/home_page.dart';
 
 void main() {
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       
       ),
  debugShowCheckedModeBanner: false,
-      home: HomePage()
+      home: BottomNavigation()
     );
   }
 }

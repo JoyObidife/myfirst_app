@@ -12,34 +12,46 @@ class HomePage extends StatelessWidget {
       
           actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 16),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
             child: Icon(Icons.search),
           ),
         ],
-        leading: Icon(Icons.menu_book_outlined),
+        leading: Icon(Icons.menu),
       ),
-        body: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: TextField(
-                decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.search),
-                  hintText: "Search hospital or address",
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey.shade300),
-                    borderRadius: BorderRadius.circular(8)
-                  
-                  )
+        body: ListView(
+      children: [
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: TextField(
+                  decoration: InputDecoration(
+                    fillColor: Colors.grey.shade200,
+                    filled: true,
+                    prefixIcon: Icon(Icons.search),
+                    hintText: "Search hospital or address",
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.circular(12)
+                    
+                    ),
+                  ),
                 ),
               ),
-            )
-
-          ],
-
-        )
+          // Widget for showing image
+          SizedBox(
+            child: Image.asset(
+              "assets/map.jpg",
+              width: MediaQuery.sizeOf(context).width,
+              height: MediaQuery.sizeOf(context).height * 0.7,
+              fit: BoxFit.cover,
+            ),
+          ),
+          
+            ],
+          
+          ),
+        );
       
-      );
+      
       
   }
 }
