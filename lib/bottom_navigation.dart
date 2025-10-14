@@ -11,7 +11,7 @@ class BottomNavigation extends StatefulWidget {
 }
 
 class _BottomNavigationState extends State<BottomNavigation> {
-  int indexToBeShown = 0;
+  int indexToBeShown = 1;
 
   var pages = [HomePage(), ContactPage(), ProfilePage()];
   @override
