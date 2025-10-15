@@ -10,6 +10,13 @@ class OnbordingPage extends StatefulWidget {
 class _OnbordingPageState extends State<OnbordingPage> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset("assets/onboardingscreen.png"),
+        ],
+      ),
+    );
   }
 }
