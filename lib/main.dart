@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
   "/":(context)=> OnbordingPage(),
   "/home": (context)=> BottomNavigation(), 
  },
-      home: BottomNavigation()
+     // home: BottomNavigation()
     );
   }
 }
