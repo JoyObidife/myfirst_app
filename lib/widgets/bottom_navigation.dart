@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:myfirst_app/contact_page.dart';
-import 'package:myfirst_app/home_page.dart';
-import 'package:myfirst_app/profile_page.dart';
+import 'package:myfirst_app/pages/contact_page.dart';
+import 'package:myfirst_app/pages/home_page.dart';
+import 'package:myfirst_app/pages/profile_page.dart';
+
 
 class BottomNavigation extends StatefulWidget {
   const BottomNavigation({super.key});

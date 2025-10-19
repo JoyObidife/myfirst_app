@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:myfirst_app/bottom_navigation.dart';
-import 'package:myfirst_app/home_page.dart';
-import 'package:myfirst_app/onbording_page.dart';
+import 'package:myfirst_app/widgets/bottom_navigation.dart';
+import 'package:myfirst_app/pages/home_page.dart';
+import 'package:myfirst_app/pages/onboarding_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
  debugShowCheckedModeBanner: false,
  routes: {
   "/":(context)=> OnbordingPage(),
-  "/home": (context)=> BottomNavigation(), 
+  "/home": (context)=> BottomNavigation(),
  },
      // home: BottomNavigation()
     );
