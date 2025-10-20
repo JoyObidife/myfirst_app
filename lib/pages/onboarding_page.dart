@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class OnbordingPage extends StatefulWidget {
   const OnbordingPage({super.key});
 
@@ -11,19 +10,17 @@ class OnbordingPage extends StatefulWidget {
 class _OnbordingPageState extends State<OnbordingPage> {
   // for tracking what is next and previous, variable or state was created.
   int activeIndex = 0;
+  int count = 3;
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         spacing: 16,
         children: [
-          CustomIndicator(
-            indicatorCount: 3, activeIndex: activeIndex,
-            ),
+          CustomIndicator(indicatorCount: count, activeIndex: activeIndex),
 
           Image.asset("assets/onboardingscreenn.jpg", width: 350, height: 350),
           Text(
@@ -42,19 +39,25 @@ class _OnbordingPageState extends State<OnbordingPage> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            activeIndex<=0 ? SizedBox(height: 0, width: 0,) :  ElevatedButton(
-              onPressed: () {
-                setState(() {
-                  activeIndex = activeIndex - 1;
-                }); 
-              },
-              child: Text("Back"),
-            ),
+            activeIndex <= 0
+                ? SizedBox(height: 0, width: 0)
+                : ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        activeIndex = activeIndex - 1;
+                      });
+                    },
+                    child: Text("Back"),
+                  ),
             ElevatedButton(
               onPressed: () {
-                setState(() {
-                  activeIndex = activeIndex + 1;
-                });
+                if (activeIndex < count - 1) {
+                  setState(() {
+                    activeIndex = activeIndex + 1;
+                  });
+              } else {
+                Navigator.of(context).pushNamed("/login");
+              }
               },
               child: Text("Next"),
             ),
@@ -67,10 +70,10 @@ class _OnbordingPageState extends State<OnbordingPage> {
 
 class CustomIndicator extends StatelessWidget {
   const CustomIndicator({
-    super.key, 
+    super.key,
     required this.indicatorCount,
-    required this.activeIndex, 
-    });
+    required this.activeIndex,
+  });
   final int indicatorCount;
   // how to make the top buttons to look faded.
   final int activeIndex;
@@ -83,7 +86,10 @@ class CustomIndicator extends StatelessWidget {
         indicatorCount,
 
         (index) => Container(
-          decoration: BoxDecoration(shape: BoxShape.circle, color: activeIndex == index ? Colors.blue : Colors.blue.shade200,),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: activeIndex == index ? Colors.blue : Colors.blue.shade200,
+          ),
           height: 10,
           width: 10,
         ),

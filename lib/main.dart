@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myfirst_app/pages/login_page.dart';
 import 'package:myfirst_app/widgets/bottom_navigation.dart';
 import 'package:myfirst_app/pages/home_page.dart';
 import 'package:myfirst_app/pages/onboarding_page.dart';
@@ -25,7 +26,9 @@ class MyApp extends StatelessWidget {
  routes: {
   "/":(context)=> OnbordingPage(),
   "/home": (context)=> BottomNavigation(),
+  "/login": (context)=> LoginPage(),
  },
+ initialRoute: "/login",
      // home: BottomNavigation()
     );
   }
