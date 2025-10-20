@@ -17,7 +17,7 @@ class LoginPage extends StatelessWidget {
           children: [
             SizedBox(height: 120,),
             Text(
-              "Get Started",
+              "Welcome Back",
               textAlign: TextAlign.center,
               style: GoogleFonts.playfairDisplay(
                 fontSize: 24,
@@ -26,7 +26,7 @@ class LoginPage extends StatelessWidget {
               ),
             ),
             Text(
-              "Register Your Details Below",
+              "Been A While",
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 16),
             ),
@@ -53,6 +53,7 @@ class LoginPage extends StatelessWidget {
               ),
               obscureText: true,
             ),
+            // sizedBox is used to space the icons
             SizedBox(height: 16,),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
@@ -98,7 +99,9 @@ class LoginPage extends StatelessWidget {
                 Text("Don't have an account?"),
                 GestureDetector(
                 onTap: () {
-                  Navigator.of(context).pushReplacementNamed("/signup");
+                 //
+                 //
+                 Navigator.of(context).pushReplacementNamed("/signup");
                 },
                   child: Text("Sign Up", style: TextStyle(color: Colors.blue)),
                 ),

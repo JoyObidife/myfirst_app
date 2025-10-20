@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:myfirst_app/widgets/custom_indicator.dart';
 
 class OnbordingPage extends StatefulWidget {
   const OnbordingPage({super.key});
@@ -10,26 +12,52 @@ class OnbordingPage extends StatefulWidget {
 class _OnbordingPageState extends State<OnbordingPage> {
   // for tracking what is next and previous, variable or state was created.
   int activeIndex = 0;
-  int count = 3;
+  
+
+  List<OnboardingItem> items = [
+    OnboardingItem(
+      title: "Welcome to MediCall",
+     subtitle: "Be prepared. Get immediate ambulance support when you need it most",
+      asset: "assets/onboardingscreenn.jpg"
+      ),
+      OnboardingItem(
+        title: "Help is On The Way", 
+        subtitle: "Providing a swift path to care in critical moments", 
+        asset: "assets/image2.jpg"
+        ),
+        OnboardingItem(
+          title: "Compassionate Care ", 
+          subtitle: "We are here for you in critical moments", 
+          asset: "assets/image.jpg"
+          ),
+  ];
 
   @override
   Widget build(BuildContext context) {
+    var onboardingItemToShow = items[activeIndex];
+    
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         spacing: 16,
         children: [
-          CustomIndicator(indicatorCount: count, activeIndex: activeIndex),
+          CustomIndicator(indicatorCount: items.length, activeIndex: activeIndex),
+           
 
-          Image.asset("assets/onboardingscreenn.jpg", width: 350, height: 350),
+          Image.asset(onboardingItemToShow.asset, width: 300, height: 300),
           Text(
-            "Welcome to MediCall",
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 32),
+            
+            onboardingItemToShow.title,
+            style: GoogleFonts.aDLaMDisplay(
+              fontWeight: FontWeight.w600,
+               fontSize: 32,
           ),
-          Text(
-            "We help you make ambulance requests for emergency and other purposes",
-            style: TextStyle(fontSize: 18),
+          ), 
+
+        Text(
+          onboardingItemToShow.subtitle,
+            style: GoogleFonts.k2d(fontSize: 16),
             textAlign: TextAlign.center,
           ),
         ],
@@ -51,12 +79,12 @@ class _OnbordingPageState extends State<OnbordingPage> {
                   ),
             ElevatedButton(
               onPressed: () {
-                if (activeIndex < count - 1) {
+                if (activeIndex < items.length - 1) {
                   setState(() {
                     activeIndex = activeIndex + 1;
                   });
               } else {
-                Navigator.of(context).pushNamed("/login");
+                Navigator.of(context).pushReplacementNamed("/home");
               }
               },
               child: Text("Next"),
@@ -68,32 +96,16 @@ class _OnbordingPageState extends State<OnbordingPage> {
   }
 }
 
-class CustomIndicator extends StatelessWidget {
-  const CustomIndicator({
-    super.key,
-    required this.indicatorCount,
-    required this.activeIndex,
-  });
-  final int indicatorCount;
-  // how to make the top buttons to look faded.
-  final int activeIndex;
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      spacing: 2,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: List.generate(
-        indicatorCount,
+class OnboardingItem{
+String title;
+String subtitle;
+String  asset;
 
-        (index) => Container(
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: activeIndex == index ? Colors.blue : Colors.blue.shade200,
-          ),
-          height: 10,
-          width: 10,
-        ),
-      ),
-    );
-  }
+OnboardingItem({
+  required this.title,
+  required this.subtitle,
+  required this.asset,
+
+});
+
 }
