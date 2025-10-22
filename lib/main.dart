@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:myfirst_app/pages/login_page.dart';
 import 'package:myfirst_app/pages/signup_page.dart';
 import 'package:myfirst_app/widgets/bottom_navigation.dart';
@@ -17,10 +18,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Save A Life',
       theme: ThemeData(
-        
-        
-        
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+        textTheme: GoogleFonts.robotoTextTheme()
       
       ),
  debugShowCheckedModeBanner: false,
@@ -30,7 +29,7 @@ class MyApp extends StatelessWidget {
    "/login": (context)=> LoginPage(),
    "/signup":(context)=> SignupPage()
  },
-   initialRoute: "/Login",
+   
    //  home: BottomNavigation()
     );
   }
