@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-
+import 'package:myfirst_app/widgets/custom_textfield.dart';
+import 'package:myfirst_app/widgets/password_textfield.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -17,43 +17,28 @@ class LoginPage extends StatelessWidget {
           children: [
             SizedBox(height: 120,),
             Text(
-              "Welcome Back",
+              "Welcome Back!",
               textAlign: TextAlign.center,
-              style: GoogleFonts.playfairDisplay(
+              style: GoogleFonts.play(
                 fontSize: 24,
                 fontWeight: FontWeight.w700,
                 color: Colors.blueAccent,
               ),
             ),
-            Text(
-              "Been A While",
+           
+               Text(
+              "Glad To Have You Here",
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 16),
             ),
             SizedBox(height: 32,),
             // textfield allow users to input text.
-            TextField(
-              // decoration allows you to style and customize the appearance of the input box
-              decoration: InputDecoration(
-                // border draws a visible rectangular border around your text field-just like a form box.
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16)
-                ),
-                labelText: "Email",
-              ),
+            CustomTextfield(
+              label: "Email",
             ),
             SizedBox(height: 16,),
             
-            TextField(
-                decoration: InputDecoration(
-               border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16)
-                ),
-                labelText: "Password",
-              ),
-              obscureText: true,
-            ),
-            // sizedBox is used to space the icons
+            PasswordTextfield(),
             SizedBox(height: 16,),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
@@ -68,6 +53,7 @@ class LoginPage extends StatelessWidget {
               onPressed: () {}, 
               child: Text("Login"),
               ),
+              
         SizedBox(height: 24,),
         Row(
           spacing: 8,
@@ -75,54 +61,39 @@ class LoginPage extends StatelessWidget {
           children: [
             Expanded(child: Divider()),
             Text("Sign up with"),
-            Divider(),
+            Expanded(child: Divider()),
           ],
         ),
-        SizedBox(height: 20,),
-           Row(
-            spacing: 28,
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-             children: [
-              SizedBox(height:20 ),
-               Icon(FontAwesomeIcons.facebook,color: Colors.blue, size: 24,),
-                Icon(FontAwesomeIcons.google,color:  Colors.red.shade900,size: 20,),
-                Icon(FontAwesomeIcons.instagram,color: Colors.red,size: 24,),
-              
-             ],
-           ),
-            SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center, 
+        SizedBox(height: 12,),
+        Row(
+           mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            InkWell(onTap: (){}, child:  Image.asset("assets/facebook.png", width: 50, height: 50,)),
+            InkWell(onTap: (){}, child:  Image.asset("assets/linkedin.png", width: 50, height: 50,)),
+            InkWell(onTap: (){}, child:   Image.asset("assets/twitter.png", width: 50, height: 50,)),
+          ],
+        ),
+        
+        SizedBox(height: 36,),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center, 
               spacing: 4,
               children: [
                 Text("Don't have an account?"),
                 GestureDetector(
                 onTap: () {
-                 //
-                 //
-                 Navigator.of(context).pushReplacementNamed("/signup");
+                  Navigator.of(context).pushNamed("/signup");
                 },
                   child: Text("Sign Up", style: TextStyle(color: Colors.blue)),
                 ),
               ],
-            ),
+
+        ),
+           
           ],
         ),
       ),
     );
   }
 }
-      
-          
-            
-
-            
-          
-        
-          
-        
-      
-    
-  
 
