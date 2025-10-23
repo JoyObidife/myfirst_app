@@ -43,7 +43,7 @@ class LoginPage extends StatelessWidget {
             CustomButton(
               text: "Login",
               onPressed: () {
-                Navigator.of(context).pushReplacementNamed("/home");
+                Navigator.of(context).pushNamed("/home");
               },
             ),
             SizedBox(height: 24),

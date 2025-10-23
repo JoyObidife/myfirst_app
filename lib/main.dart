@@ -24,12 +24,12 @@ class MyApp extends StatelessWidget {
       ),
  debugShowCheckedModeBanner: false,
  routes: {
-  "/":(context)=> OnbordingPage(),
+  "/o":(context)=> OnbordingPage(),
   "/home": (context)=> BottomNavigation(),
    "/login": (context)=> LoginPage(),
    "/signup":(context)=> SignupPage()
  },
-   
+   initialRoute: "/home",
    //  home: BottomNavigation()
     );
   }
