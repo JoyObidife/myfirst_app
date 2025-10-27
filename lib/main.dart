@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
    "/login": (context)=> LoginPage(),
    "/signup":(context)=> SignupPage()
  },
-   initialRoute: "/home",
+   initialRoute: "/login",
    //  home: BottomNavigation()
     );
   }

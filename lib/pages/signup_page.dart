@@ -13,6 +13,17 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,14 +49,60 @@ class _SignupPageState extends State<SignupPage> {
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 16),
             ),
-            CustomTextfield(label: "Username"),
-            CustomTextfield(label: "Email"),
-            PasswordTextfield(),
-            PasswordTextfield(),
+
+            SizedBox(height: 16),
+            CustomTextfield(
+              label: "Username",
+              textEditingController: usernameController,
+            ),
+
+            SizedBox(height: 16),
+            CustomTextfield(
+              label: "Email",
+              textEditingController: emailController,
+            ),
+
+            SizedBox(height: 16),
+            PasswordTextfield(
+              label: "Password",
+              textEditingController: passwordController,
+            ),
+
+            SizedBox(height: 16),
+            PasswordTextfield(
+              label: "Confirm Password",
+              textEditingController: confirmPasswordController,
+            ),
+            SizedBox(height: 16),
             CustomButton(
               text: 'Signup',
               onPressed: () {
+                if (usernameController.text != "joy") {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text("Username not correct")),
+                  );
+                  return;
+                }
+                if (emailController.text != "joy@gmail.com") {
+                  ScaffoldMessenger.of(
+                    context,
+                  ).showSnackBar(SnackBar(content: Text("Incorrect email")));
+                }
+                if (passwordController.text != "1234") {
+                  ScaffoldMessenger.of(
+                    context,
+                  ).showSnackBar(SnackBar(content: Text("Incorrect password")));
+                  return;
+                  
+                }
+                if(passwordController.text != confirmPasswordController.text) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text("Password does not match with confirm")),
+                  );
+                  return;
+                }
                 Navigator.of(context).pushReplacementNamed("/home");
+                return;
               },
             ),
             SocialSignin(),
