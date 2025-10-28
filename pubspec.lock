@@ -235,6 +235,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.16.0"
+  otp_input:
+    dependency: "direct main"
+    description:
+      name: otp_input
+      sha256: "5a9e3157848a3967843b691c88682d0cb9d1fe99895b30e015b1f2850ac2756f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.4"
   path:
     dependency: transitive
     description:

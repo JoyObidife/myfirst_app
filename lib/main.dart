@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:myfirst_app/pages/forgot_password_page.dart';
 import 'package:myfirst_app/pages/login_page.dart';
 import 'package:myfirst_app/pages/signup_page.dart';
 import 'package:myfirst_app/widgets/bottom_navigation.dart';
@@ -27,7 +28,8 @@ class MyApp extends StatelessWidget {
   "/o":(context)=> OnbordingPage(),
   "/home": (context)=> BottomNavigation(),
    "/login": (context)=> LoginPage(),
-   "/signup":(context)=> SignupPage()
+   "/signup":(context)=> SignupPage(),
+   "/forgot":(context)=> ForgotPasswordPage(),
  },
    initialRoute: "/login",
    //  home: BottomNavigation()
