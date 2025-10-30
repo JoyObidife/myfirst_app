@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:myfirst_app/provider/User_notifier.dart';
 import 'package:myfirst_app/widgets/custom_button.dart';
 import 'package:myfirst_app/widgets/custom_textfield.dart';
 import 'package:myfirst_app/widgets/password_textfield.dart';
 import 'package:myfirst_app/widgets/social_signin.dart';
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -60,9 +62,9 @@ class _LoginPageState extends State<LoginPage> {
             ),
             SizedBox(height: 16),
             CustomButton(
-              text: "Login",
-              onPressed: () {
-                // check email
+               text: "Login",
+                onPressed: () {
+                    // check email
                 // if it is not valid, return and show message
                 // check password
                 // if it is not valid, return and show message
@@ -90,8 +92,10 @@ class _LoginPageState extends State<LoginPage> {
                 }
 
                 Navigator.of(context).pushNamed("/home");
-              },
-            ),
+                 
+                },
+              ),
+            
             TextButton(onPressed: () {
               Navigator.of(context).pushNamed("/forgot");
             }, child: Text("Forgot Password")),
