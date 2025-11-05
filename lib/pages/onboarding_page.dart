@@ -85,7 +85,7 @@ class _OnbordingPageState extends State<OnbordingPage> {
                     activeIndex = activeIndex + 1;
                   });
               } else {
-                Navigator.of(context).pushReplacementNamed("/home");
+                Navigator.of(context).pushReplacementNamed("/login");
               }
               },
               child: Text("Next"),

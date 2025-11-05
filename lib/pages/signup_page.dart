@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:myfirst_app/provider/user_notifier.dart';
 import 'package:myfirst_app/widgets/custom_button.dart';
 import 'package:myfirst_app/widgets/custom_textfield.dart';
 import 'package:myfirst_app/widgets/password_textfield.dart';
 import 'package:myfirst_app/widgets/social_signin.dart';
+import 'package:provider/provider.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -26,6 +28,7 @@ class _SignupPageState extends State<SignupPage> {
 
   @override
   Widget build(BuildContext context) {
+    var userNotifier = Provider.of<UserNotifier>(context);
     return Scaffold(
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16),
@@ -76,33 +79,35 @@ class _SignupPageState extends State<SignupPage> {
             SizedBox(height: 16),
             CustomButton(
               text: 'Signup',
+              
               onPressed: () {
-                if (usernameController.text != "joy") {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text("Username not correct")),
-                  );
-                  return;
-                }
-                if (emailController.text != "joy@gmail.com") {
-                  ScaffoldMessenger.of(
-                    context,
-                  ).showSnackBar(SnackBar(content: Text("Incorrect email")));
-                }
-                if (passwordController.text != "1234") {
-                  ScaffoldMessenger.of(
-                    context,
-                  ).showSnackBar(SnackBar(content: Text("Incorrect password")));
-                  return;
+                 userNotifier.signup(usernameController.text, emailController.text, context);
+                //if (usernameController.text != "joy") {
+                  //ScaffoldMessenger.of(context).showSnackBar(
+                    //SnackBar(content: Text("Username not correct")),
+                  //);
+                  //return;
+                //}
+                //if (emailController.text != "joy@gmail.com") {
+                  //ScaffoldMessenger.of(
+                    //context,
+                  //).showSnackBar(SnackBar(content: Text("Incorrect email")));
+                //}
+                //if (passwordController.text != "1234") {
+                  //ScaffoldMessenger.of(
+                    //context,
+                  //).showSnackBar(SnackBar(content: Text("Incorrect password")));
+                  //return;
                   
-                }
-                if(passwordController.text != confirmPasswordController.text) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text("Password does not match with confirm")),
-                  );
-                  return;
-                }
-                Navigator.of(context).pushReplacementNamed("/home");
-                return;
+                //}
+                //if(passwordController.text != confirmPasswordController.text) {
+                  //ScaffoldMessenger.of(context).showSnackBar(
+                    //SnackBar(content: Text("Password does not match with confirm")),
+                  //);
+                  //return;
+                //}
+                //Navigator.of(context).pushReplacementNamed("/home");
+               
               },
             ),
             SocialSignin(),

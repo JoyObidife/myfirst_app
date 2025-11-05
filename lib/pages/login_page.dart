@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:myfirst_app/provider/User_notifier.dart';
 import 'package:myfirst_app/widgets/custom_button.dart';
 import 'package:myfirst_app/widgets/custom_textfield.dart';
 import 'package:myfirst_app/widgets/password_textfield.dart';

@@ -6,7 +6,7 @@ class UserNotifier extends ChangeNotifier{
 UserDetail? loggedInUser;
 
 
-void login(String email, String password) async{
+void login(String email, String password, BuildContext context) async{
   Future.delayed(Duration(seconds: 2));
 
   loggedInUser = USER_DETAILS[0];
@@ -14,4 +14,13 @@ void login(String email, String password) async{
   notifyListeners();
 
 }
+
+void signup(String username, String email, BuildContext context) {
+  loggedInUser = UserDetail(name: username, email: email, profilePicture: "");
+  USER_DETAILS.add(loggedInUser!);
+  Navigator.pushReplacementNamed(context, "/home");
+
+ notifyListeners();
+}
+ 
 }

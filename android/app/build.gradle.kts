@@ -42,3 +42,7 @@ android {
 flutter {
     source = "../.."
 }
+
+dependencies {
+ implementation("androidx.window:window:1.1.0")
+}
