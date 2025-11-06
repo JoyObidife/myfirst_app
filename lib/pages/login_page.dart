@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:myfirst_app/provider/user_notifier.dart';
 import 'package:myfirst_app/widgets/custom_button.dart';
 import 'package:myfirst_app/widgets/custom_textfield.dart';
 import 'package:myfirst_app/widgets/password_textfield.dart';
 import 'package:myfirst_app/widgets/social_signin.dart';
+import 'package:provider/provider.dart';
 
 
 class LoginPage extends StatefulWidget {
@@ -26,6 +28,8 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+     var userNotifier = Provider.of<UserNotifier>(context);
+
     return Scaffold(
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16),
@@ -63,6 +67,12 @@ class _LoginPageState extends State<LoginPage> {
             CustomButton(
                text: "Login",
                 onPressed: () {
+                  userNotifier.login(
+                   
+                  emailController.text, 
+                  passwordController.text,
+                  context,
+                );
                     // check email
                 // if it is not valid, return and show message
                 // check password
