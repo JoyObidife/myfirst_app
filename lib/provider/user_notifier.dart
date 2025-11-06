@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myfirst_app/data/dummy_user_details.dart';
 import 'package:myfirst_app/model/user_detail.dart';
-import 'package:myfirst_app/provider/snackbar_service.dart';
+
 
 class UserNotifier extends ChangeNotifier{
 UserDetail? loggedInUser;
@@ -16,9 +16,9 @@ void login(String email, String password, BuildContext context) async{
     if(userDetail.email == email && userDetail.password == password) {
       loggedInUser = userDetail;
       Navigator.of(context).pushReplacementNamed("/home");
-    } else{
-      SnackbarServices.showSnackBar(context, "Wrong credentials");
     }
+
+    
   }
 
   notifyListeners();

@@ -68,18 +68,18 @@ class _LoginPageState extends State<LoginPage> {
                 // check password
                 // if it is not valid, return and show message
                 // else take user to the next page.
-                if (emailController.text != "joy@gmail.com") {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text("Not a valid email. Try again")),
-                  );
+                //if (emailController.text != "joy@gmail.com") {
+                 // ScaffoldMessenger.of(context).showSnackBar(
+                   // SnackBar(content: Text("Not a valid email. Try again")),
+                 // );
 
-                  return;
-                }
+                  //return;
+               // }
 
-                if (passwordController.text != "1234") {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text("Not a valid password. Try again")),
-                  );
+               // if (passwordController.text != "1234") {
+                 // ScaffoldMessenger.of(context).showSnackBar(
+                  //  SnackBar(content: Text("Not a valid password. Try again")),
+                 // );
                   // for showing a dialog
                   //showDialog(context: context, builder: (context){
                   //return AlertDialog(
@@ -87,8 +87,8 @@ class _LoginPageState extends State<LoginPage> {
                     //actions: [],
                   //);
                   //});
-                  return;
-                }
+                 // return;
+               // }
 
                 Navigator.of(context).pushNamed("/home");
                  
