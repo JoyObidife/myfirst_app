@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:myfirst_app/provider/user_notifier.dart';
 import 'package:myfirst_app/widgets/custom_button.dart';
 import 'package:myfirst_app/widgets/custom_textfield.dart';
 import 'package:myfirst_app/widgets/password_textfield.dart';
 import 'package:myfirst_app/widgets/social_signin.dart';
+import 'package:provider/provider.dart';
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -25,6 +28,8 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+     var userNotifier = Provider.of<UserNotifier>(context);
+
     return Scaffold(
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16),
@@ -60,25 +65,31 @@ class _LoginPageState extends State<LoginPage> {
             ),
             SizedBox(height: 16),
             CustomButton(
-              text: "Login",
-              onPressed: () {
-                // check email
+               text: "Login",
+                onPressed: () {
+                  userNotifier.login(
+                   
+                  emailController.text, 
+                  passwordController.text,
+                  context,
+                );
+                    // check email
                 // if it is not valid, return and show message
                 // check password
                 // if it is not valid, return and show message
                 // else take user to the next page.
-                if (emailController.text != "joy@gmail.com") {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text("Not a valid email. Try again")),
-                  );
+                //if (emailController.text != "joy@gmail.com") {
+                 // ScaffoldMessenger.of(context).showSnackBar(
+                   // SnackBar(content: Text("Not a valid email. Try again")),
+                 // );
 
-                  return;
-                }
+                  //return;
+               // }
 
-                if (passwordController.text != "1234") {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text("Not a valid password. Try again")),
-                  );
+               // if (passwordController.text != "1234") {
+                 // ScaffoldMessenger.of(context).showSnackBar(
+                  //  SnackBar(content: Text("Not a valid password. Try again")),
+                 // );
                   // for showing a dialog
                   //showDialog(context: context, builder: (context){
                   //return AlertDialog(
@@ -86,12 +97,14 @@ class _LoginPageState extends State<LoginPage> {
                     //actions: [],
                   //);
                   //});
-                  return;
-                }
+                 // return;
+               // }
 
                 Navigator.of(context).pushNamed("/home");
-              },
-            ),
+                 
+                },
+              ),
+            
             TextButton(onPressed: () {
               Navigator.of(context).pushNamed("/forgot");
             }, child: Text("Forgot Password")),

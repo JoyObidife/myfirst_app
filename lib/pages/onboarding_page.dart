@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:myfirst_app/model/onboarding_item.dart';
 import 'package:myfirst_app/widgets/custom_indicator.dart';
 
 class OnbordingPage extends StatefulWidget {
@@ -84,7 +85,7 @@ class _OnbordingPageState extends State<OnbordingPage> {
                     activeIndex = activeIndex + 1;
                   });
               } else {
-                Navigator.of(context).pushReplacementNamed("/home");
+                Navigator.of(context).pushReplacementNamed("/login");
               }
               },
               child: Text("Next"),
@@ -96,16 +97,3 @@ class _OnbordingPageState extends State<OnbordingPage> {
   }
 }
 
-class OnboardingItem{
-String title;
-String subtitle;
-String  asset;
-
-OnboardingItem({
-  required this.title,
-  required this.subtitle,
-  required this.asset,
-
-});
-
-}

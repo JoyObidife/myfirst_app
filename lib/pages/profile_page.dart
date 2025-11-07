@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:myfirst_app/pages/notification_page.dart';
 import 'package:myfirst_app/pages/payment_methods.dart';
 import 'package:myfirst_app/pages/personal_information.dart';
+import 'package:myfirst_app/provider/user_notifier.dart';
+import 'package:provider/provider.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -13,6 +15,7 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       appBar: AppBar(
         title: Text("Profile"),
@@ -149,10 +152,11 @@ MaterialPageRoute(builder: (contex){
   }
 
   Widget _builddetails() {
+      var userNotifier = Provider.of<UserNotifier>(context);
     return Column(
       children: [
         Text(
-          "Hannah Michael",
+          userNotifier.loggedInUser!.name,
           style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
         ),
         Text(
