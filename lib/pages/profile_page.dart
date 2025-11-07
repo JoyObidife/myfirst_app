@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:myfirst_app/model/user_detail.dart';
 import 'package:myfirst_app/pages/notification_page.dart';
 import 'package:myfirst_app/pages/payment_methods.dart';
 import 'package:myfirst_app/pages/personal_information.dart';
-import 'package:myfirst_app/provider/user_notifier.dart';
-import 'package:provider/provider.dart';
+import 'package:myfirst_app/provider/user_cubit.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -144,23 +145,27 @@ MaterialPageRoute(builder: (contex){
   }
 
   Widget _buildonprofilepics() {
+     UserDetail? user = BlocProvider.of<UserCubit>(context).state;
     return Container(
       decoration: BoxDecoration(shape: BoxShape.circle),
       clipBehavior: Clip.hardEdge,
-      child: Image.asset("assets/profile_pics.jpg", width: 100, height: 100),
+      child: Image.network(user!.profilePicture, width: 100, height: 100),
     );
   }
 
   Widget _builddetails() {
-      var userNotifier = Provider.of<UserNotifier>(context);
+      UserDetail? user = BlocProvider.of<UserCubit>(context).state;
+
+    if(user == null) return Text("User Details not set");
+
     return Column(
       children: [
         Text(
-          userNotifier.loggedInUser!.name,
+          user.name,
           style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
         ),
         Text(
-          "hannahmail@gmail.com",
+          user.email,
           style: TextStyle(fontWeight: FontWeight.w300, fontSize: 13),
         ),
       ],

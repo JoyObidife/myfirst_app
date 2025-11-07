@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myfirst_app/pages/forgot_password_page.dart';
 import 'package:myfirst_app/pages/login_page.dart';
 import 'package:myfirst_app/pages/signup_page.dart';
-import 'package:myfirst_app/provider/user_notifier.dart';
+import 'package:myfirst_app/provider/user_cubit.dart';
 import 'package:myfirst_app/widgets/bottom_navigation.dart';
 import 'package:myfirst_app/pages/onboarding_page.dart';
-import 'package:provider/provider.dart';
 
 
 void main() {
@@ -20,8 +20,8 @@ class MyApp extends StatelessWidget {
 // This Widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => UserNotifier(),
+    return BlocProvider(
+      create: (context) => UserCubit(),
       child: MaterialApp(
        title: 'Save A Life',
             theme: ThemeData(
