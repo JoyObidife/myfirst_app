@@ -4,7 +4,6 @@ import 'package:myfirst_app/pages/forgot_password_page.dart';
 import 'package:myfirst_app/pages/login_page.dart';
 import 'package:myfirst_app/pages/signup_page.dart';
 import 'package:myfirst_app/widgets/bottom_navigation.dart';
-import 'package:myfirst_app/pages/home_page.dart';
 import 'package:myfirst_app/pages/onboarding_page.dart';
 
 void main() {
