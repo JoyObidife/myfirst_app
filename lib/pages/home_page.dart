@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:myfirst_app/widgets/contact_item.dart';
 
 class HomePage extends StatefulWidget {
@@ -76,14 +77,30 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildMapView() {
-    return Padding(
-      padding: EdgeInsetsGeometry.all(16),
-      child: Image.asset(
-        "assets/map.jpg",
-        width: MediaQuery.sizeOf(context).width * 0.8,
-        height: MediaQuery.sizeOf(context).height * 1,
-        fit: BoxFit.cover,
-      ),
+    return ListView(
+      children: [
+        SizedBox(
+          width: MediaQuery.sizeOf(context).width,
+          height: MediaQuery.sizeOf(context).height * 0.7,
+          child: GoogleMap(
+            //onMapCreated: _onMapCreated,
+            initialCameraPosition: const CameraPosition(
+              target: LatLng(4, 4),
+              zoom: 2,
+            ),
+            markers: {
+              Marker(
+                markerId: MarkerId("My house"),
+                position: LatLng(4, 9),
+                infoWindow: InfoWindow(
+                  title: "Chioma house",
+                  snippet: "come and help me",
+                ),
+              ),
+            },
+          ),
+        ),
+      ],
     );
   }
 }

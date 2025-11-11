@@ -160,7 +160,7 @@ MaterialPageRoute(builder: (contex){
           style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
         ),
         Text(
-          "hannahmail@gmail.com",
+          userNotifier.loggedInUser!.email,
           style: TextStyle(fontWeight: FontWeight.w300, fontSize: 13),
         ),
       ],
