@@ -19,6 +19,8 @@ class _SignupPageState extends State<SignupPage> {
   TextEditingController confirmPasswordController = TextEditingController();
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+
 
   @override
   void dispose() {
@@ -28,7 +30,7 @@ class _SignupPageState extends State<SignupPage> {
 
   @override
   Widget build(BuildContext context) {
-    var userNotifier = Provider.of<UserNotifier>(context);
+    var userProv = Provider.of<UserNotifier>(context);
     return Scaffold(
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16),
@@ -81,7 +83,13 @@ class _SignupPageState extends State<SignupPage> {
               text: 'Signup',
               
               onPressed: () {
-                 userNotifier.signup(usernameController.text, emailController.text, context);
+                userProv.signUp(
+                  context: context,
+                  userName: nameController.text,
+                  password: passwordController.text,
+                  email: emailController.text
+                );
+                 //userNotifier.signup(usernameController.text, emailController.text, context);
                 //if (usernameController.text != "joy") {
                   //ScaffoldMessenger.of(context).showSnackBar(
                     //SnackBar(content: Text("Username not correct")),
@@ -106,7 +114,7 @@ class _SignupPageState extends State<SignupPage> {
                   //);
                   //return;
                 //}
-                //Navigator.of(context).pushReplacementNamed("/home");
+                
                
               },
             ),
