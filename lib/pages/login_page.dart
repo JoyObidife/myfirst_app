@@ -66,12 +66,13 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(height: 16),
             CustomButton(
                text: "Login",
-                onPressed: () {
+                onPressed: (){
                   userNotifier.login(
                    
                   emailController.text, 
                   passwordController.text,
                   context,
+                  
                 );
                     // check email
                 // if it is not valid, return and show message
@@ -100,7 +101,7 @@ class _LoginPageState extends State<LoginPage> {
                  // return;
                // }
 
-                Navigator.of(context).pushNamed("/home");
+                //Navigator.of(context).pushNamed("/home");
                  
                 },
               ),

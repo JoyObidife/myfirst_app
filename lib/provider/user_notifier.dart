@@ -1,35 +1,38 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:myfirst_app/data/dummy_user_details.dart';
+
 import 'package:myfirst_app/model/user_detail.dart';
 
 class UserNotifier extends ChangeNotifier {
   UserDetail? loggedInUser;
 
   void login(String email, String password, BuildContext context) async {
-    Future.delayed(Duration(seconds: 2));
+    try {
+      // create user on firebase
+      UserCredential user = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
 
-    loggedInUser = USER_DETAILS[0];
-
-    for (var userDetail in USER_DETAILS) {
-      if (userDetail.email == email && userDetail.password == password) {
-        loggedInUser = userDetail;
-        Navigator.of(context).pushReplacementNamed("/home");
-      } else {}
+      loggedInUser = UserDetail(
+        name: "name",
+        profilePicture: "profilePicture",
+        email: user.user!.email!,
+        
+      ); // Take user to home page
+      Navigator.of(context).pushReplacementNamed("/home");
+    } on FirebaseAuthException catch (e) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(e.message ?? "error occured")));
+    } catch (e) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(e.toString())));
     }
-
     notifyListeners();
   }
 
   void signup(String username, String email, BuildContext context) {
-    loggedInUser = UserDetail(
-      name: username,
-      email: email,
-      profilePicture: "",
-      password: "",
-    );
-    USER_DETAILS.add(loggedInUser!);
-    Navigator.pushReplacementNamed(context, "/home");
+    loggedInUser = UserDetail(name: username, email: email, profilePicture: "");
 
     notifyListeners();
   }
@@ -40,10 +43,28 @@ class UserNotifier extends ChangeNotifier {
     required String password,
     required String email,
   }) async {
-    UserCredential user = await FirebaseAuth.instance
-        .createUserWithEmailAndPassword(email: email, password: password);
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text("User $userName has been created successfully")),
-    );
+    try {
+      // create user on firebase
+      UserCredential user = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(email: email, password: password);
+      // Alert user on success
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("User $userName has been created successfully")),
+      );
+      // Take user to home page
+      Navigator.of(context).pushReplacementNamed("/home");
+    } on FirebaseAuthException catch (e) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(e.message ?? "error occured")));
+    } catch (e) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(e.toString())));
+    }
+  }
+
+  void logout() async {
+    await FirebaseAuth.instance.signOut();
   }
 }
