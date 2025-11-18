@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:myfirst_app/provider/user_notifier.dart';
+import 'package:provider/provider.dart';
 
 class SocialSignin extends StatelessWidget {
   const SocialSignin({
@@ -7,6 +9,7 @@ class SocialSignin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+     var userP = Provider.of<UserNotifier>(context);
     return Column(
       children: [
         Row(
@@ -31,9 +34,11 @@ class SocialSignin extends StatelessWidget {
               ),
             ),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                userP.signInWithGoogle(context);
+              },
               child: Image.asset(
-                "assets/linkedin.png",
+                "assets/icons8-google-color/google.png",
                 width: 50,
                 height: 50,
               ),
