@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -13,11 +14,8 @@ class UserNotifier extends ChangeNotifier {
       UserCredential user = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
 
-      loggedInUser = UserDetail(
-        name: "name",
-        profilePicture: "profilePicture",
-        email: user.user!.email!,
-      ); // Take user to home page
+          
+      // Take user to home page
       Navigator.of(context).pushReplacementNamed("/home");
     } on FirebaseAuthException catch (e) {
       ScaffoldMessenger.of(
@@ -31,11 +29,11 @@ class UserNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
-  void signup(String username, String email, BuildContext context) {
-    loggedInUser = UserDetail(name: username, email: email, profilePicture: "");
+  // void signup(String username, String email, BuildContext context) {
+  //   loggedInUser = UserDetail(name: username,  email: email, profilePicture: "",phoneNumber: "", address: "", occupation: "");
 
-    notifyListeners();
-  }
+  //   notifyListeners();
+  // }
 
   Future<void> signUp({
     required BuildContext context,
@@ -44,9 +42,31 @@ class UserNotifier extends ChangeNotifier {
     required String email,
   }) async {
     try {
-      // create user on firebase
+      // create user on firebase auth
       UserCredential user = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
+      await user.user?.updateDisplayName(userName);       
+      await user.user?.reload();
+      
+      // create userdetail object
+      var userDetail = UserDetail(
+        email: email,
+        name: userName,
+      );
+
+ // store user to firestore
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(email)
+          .set(userDetail.toJson());
+
+        loggedInUser = userDetail;
+
+       notifyListeners();
+
+
+
+     
       // Alert user on success
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("User $userName has been created successfully")),
@@ -68,11 +88,11 @@ class UserNotifier extends ChangeNotifier {
     try {
       var instance = GoogleSignIn.instance;
     
-      final GoogleSignInAccount? googleUser = await instance
+      final GoogleSignInAccount googleUser = await instance
           .authenticate();
 
       // Obtain the auth details from the request
-      final GoogleSignInAuthentication googleAuth = googleUser!.authentication;
+      final GoogleSignInAuthentication googleAuth = googleUser.authentication;
 
       //Create a new Credential
       final credential = GoogleAuthProvider.credential(
@@ -84,7 +104,7 @@ class UserNotifier extends ChangeNotifier {
         credential,
       );
 
-      print(user);
+     
     } on FirebaseAuthException catch (e) {
       ScaffoldMessenger.of(
         context,

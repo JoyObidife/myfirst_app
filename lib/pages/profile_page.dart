@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myfirst_app/model/user_detail.dart';
 import 'package:myfirst_app/pages/notification_page.dart';
 import 'package:myfirst_app/pages/payment_methods.dart';
 import 'package:myfirst_app/pages/personal_information.dart';
@@ -15,7 +16,8 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
-    var userProvider = Provider.of<UserNotifier>(context);
+     var userProvider = Provider.of<UserNotifier>(context);
+
     
     return Scaffold(
       appBar: AppBar(
@@ -149,6 +151,8 @@ MaterialPageRoute(builder: (contex){
   }
 
   Widget _buildonprofilepics() {
+    UserDetail? user = Provider.of<UserNotifier>(context).loggedInUser;
+
     return Container(
       decoration: BoxDecoration(shape: BoxShape.circle),
       clipBehavior: Clip.hardEdge,
@@ -157,7 +161,7 @@ MaterialPageRoute(builder: (contex){
   }
 
   Widget _builddetails() {
-      var user = Provider.of<UserNotifier>(context).loggedInUser;
+     UserDetail? user = Provider.of<UserNotifier>(context).loggedInUser;
 
       if(user == null) return Text("User Details not set");
 
