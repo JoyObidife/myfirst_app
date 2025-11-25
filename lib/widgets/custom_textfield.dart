@@ -5,7 +5,7 @@ class CustomTextfield extends StatelessWidget {
     
     super.key,
     required this.label,
-    required this.textEditingController,
+    this.textEditingController,
   });
   final String label;
   final TextEditingController? textEditingController;

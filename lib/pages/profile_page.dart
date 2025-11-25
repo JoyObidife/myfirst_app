@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:myfirst_app/model/user_detail.dart';
 import 'package:myfirst_app/pages/notification_page.dart';
 import 'package:myfirst_app/pages/payment_methods.dart';
-import 'package:myfirst_app/pages/personal_information.dart';
+import 'package:myfirst_app/pages/personal _information.dart';
 import 'package:myfirst_app/provider/user_notifier.dart';
 import 'package:provider/provider.dart';
+
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});

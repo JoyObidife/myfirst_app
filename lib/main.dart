@@ -12,6 +12,7 @@ import 'package:myfirst_app/provider/user_notifier.dart';
 import 'package:myfirst_app/widgets/bottom_navigation.dart';
 import 'package:myfirst_app/pages/onboarding_page.dart';
 import 'package:provider/provider.dart';
+import 'package:myfirst_app/pages/personal _information.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -49,6 +50,7 @@ class MyApp extends StatelessWidget {
           "/login": (context) => LoginPage(),
           "/signup": (context) => SignupPage(),
           "/forgot": (context) => ForgotPasswordPage(),
+          "/personal information":(context) => PersonalInformation(),
         },
         initialRoute: "/o",
 
