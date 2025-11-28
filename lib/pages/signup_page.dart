@@ -85,7 +85,7 @@ class _SignupPageState extends State<SignupPage> {
               onPressed: () {
                 userProv.signUp(
                   context: context,
-                  userName: nameController.text,
+                  userName: usernameController.text,
                   password: passwordController.text,
                   email: emailController.text
                 );

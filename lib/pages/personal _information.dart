@@ -62,10 +62,12 @@ class PersonalInformation extends StatelessWidget {
                 spacing: 14,
                 children: [
                   SizedBox(height: 18),
+
                    CustomTextfield(label: "Username"),
                     CustomTextfield(label: "Email"),
                     PasswordTextfield(label: "Password"),
                     PasswordTextfield(label: "Confirm Password"),
+                    
                   SizedBox(height: 24),
                   CustomButton(text: "Update Profile", onPressed: () {}),
                 ],
