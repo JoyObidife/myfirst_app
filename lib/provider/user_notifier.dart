@@ -14,9 +14,7 @@ class UserNotifier extends ChangeNotifier {
       UserCredential user = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
 
-          
-      // Take user to home page
-      Navigator.of(context).pushReplacementNamed("/home");
+      
     } on FirebaseAuthException catch (e) {
       ScaffoldMessenger.of(
         context,
@@ -45,28 +43,20 @@ class UserNotifier extends ChangeNotifier {
       // create user on firebase auth
       UserCredential user = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
-      await user.user?.updateDisplayName(userName);       
-      await user.user?.reload();
-      
-      // create userdetail object
-      var userDetail = UserDetail(
-        email: email,
-        name: userName,
-      );
 
- // store user to firestore
+      // create userdetail object
+      var userDetail = UserDetail(email: email, name: userName);
+
+      // store user to firestore
       await FirebaseFirestore.instance
           .collection("users")
           .doc(email)
           .set(userDetail.toJson());
 
-        loggedInUser = userDetail;
+      loggedInUser = userDetail;
 
-       notifyListeners();
+      notifyListeners();
 
-
-
-     
       // Alert user on success
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("User $userName has been created successfully")),
@@ -87,9 +77,8 @@ class UserNotifier extends ChangeNotifier {
   void signInWithGoogle(BuildContext context) async {
     try {
       var instance = GoogleSignIn.instance;
-    
-      final GoogleSignInAccount googleUser = await instance
-          .authenticate();
+
+      final GoogleSignInAccount googleUser = await instance.authenticate();
 
       // Obtain the auth details from the request
       final GoogleSignInAuthentication googleAuth = googleUser.authentication;
@@ -103,8 +92,22 @@ class UserNotifier extends ChangeNotifier {
       UserCredential user = await FirebaseAuth.instance.signInWithCredential(
         credential,
       );
+      // create userdetail object
+      var userDetail = UserDetail(
+        email: user.user!.email!,
+        name: user.user!.displayName ?? "No name",
+        profilePicture: user.user!.photoURL ?? "",
+      );
 
-     
+      // store user to firestore
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(userDetail.email)
+          .set(userDetail.toJson());
+
+      loggedInUser = userDetail;
+      // Take user to home page
+      Navigator.of(context).pushReplacementNamed("/home");
     } on FirebaseAuthException catch (e) {
       ScaffoldMessenger.of(
         context,
